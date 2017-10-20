@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/uikit/dist/css/uikit.almost-flat.min.css">
+<link rel="stylesheet" href="/static/dropify/dist/css/dropify.css">
+<style>
+	body {
+		background: #F8FBFF;
+		background-image: url('/static/common/img/bg.jpg');
+		background-size: cover;
+		-moz-background-size: cover;
+		-webkit-background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="container" style="margin-top: 120px;margin-bottom: 120px">
+	<form action="{% url 'analysis:analysis' %}" method="POST" enctype="multipart/form-data" class="row justify-content-center"
+	    onsubmit="return check();">
+		{% csrf_token %}
+		<div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xl-6" id="input-form">
+			<input id="input-file" type="file" name="file" data-show-upload="true" class="dropify" autofocus/>
+			<a id="switch_btn" href="javascript:showInput()" class="uk-display-block uk-margin-top uk-text-center uk-text-bold">输入图片地址</a>
+			<!-- <input id="input-url" type="input" name="file" class="form-control" style="display:none;"/> -->
+			<div id="input-url" class="input-group" style="display:none; margin:10px 0;">
+				<input type="text" name="imgurl" id="imgurl" placeholder="请输入图片地址" class="form-control search-group fc-clear" autofocus>
+				<span class="input-group-btn">
+					<button class="btn btn-info text-center" type="submit">分析</button>
+				</span>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock main %}
+
+{% block footer %}
+<footer class="text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				Copyright &copy; {% now "Y" %} PicTest
+			</div>
+		</div>
+	</div>
+</footer>
+{% endblock %}
+
+{% block script %}
+<script src="/static/dropify/dist/js/dropify.js"></script>
+<script src="/static/uikit/dist/js/uikit.min.js"></script>
+<script>
+	$('.dropify').dropify({
+		messages: {
+			'default': '<h3 class="uk-h4">图片上传</h3>注：将图片拖拽到此处或点击上传',
+			'replace': '拖拽或点击上传以覆盖',
+			'remove': '删除',
+			'error': 'Ooops, 出现问题了.',
+			'upload': '开始上传',
+		}
+	});
+
+	function check() {
+		if (document.getElementById('input-url').style.display == 'none') return true;
+		var text = document.getElementById('imgurl').value;
+		if (text === null | text.replace(/(^\s+)|(\s+$)/g, '') === '') {
+			alert('请输入图片地址！');
+			document.getElementById("imgurl").focus();
+			return false;
+		}
+		return true;
+	}
+
+	function switchType() {
+		var dom = document.getElementById('input-file');
+		dom.removeAttribute('data-show-upload');
+		dom.className = 'form-control';
+		dom.type = 'input';
+	}
+
+	function showInput() {
+		var inputBox = document.getElementById('input-url');
+		if (inputBox.style.display == 'flex')
+			inputBox.style.display = 'none';
+		else {
+			inputBox.style.display = 'flex';
+			document.getElementById('imgurl').focus()
+		}
+	}
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+main {
+    text-align: center;
+    padding-top: 160px;
+    line-height: 3;
+}
+
+p {
+    font-size: 18px;
+    color: #4fb1f7;
+}
+
+footer {
+    color: darkgrey;
+}

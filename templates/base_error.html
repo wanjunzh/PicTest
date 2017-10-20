@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}图片检测{% endblock %}</title>
+	<link rel="icon" href="/static/img/favicon.ico">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/common/css/base.css">
+	<link rel="stylesheet" href="/static/common/css/base_error.css">
+	{% block style %}{% endblock style %}
+</head>
+
+<body data-spy="scroll" data-target=".navbar-fixed-top">
+	<div id="wrapper">
+		{% block main %}{% endblock main %}
+		<footer class="text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						Copyright &copy; {% now "Y" %} PicTest
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+
+</html>

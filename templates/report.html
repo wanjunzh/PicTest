@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style type="text/css">
+    img {
+        width: 100%;
+    }
+    h2 {
+        margin-top: 20px;
+        color: #4fb1f7;
+    }
+    h5 {
+        margin-top: 20px;
+    }
+</style>
+{% endblock style %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col text-center text-info">
+            <h2>图片检测报告</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-primary" style="margin-top: 30px;" role="alert">
+                {{ result }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h5>ELA对比图</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <a href="{{ rawimg }}" target="_blank"><img src="{{ rawimg }}" alt="原图" /></a>
+        </div>
+        <div class="col text-center">
+            <a href="{{ elaimg }}" target="_blank"><img src="{{ elaimg }}" alt="ELA图" /></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="text-center text-primary" style="margin-top: 30px;">ELA diff: {{ diff }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="text-center text-muted">右图中较亮的部分可能经过了修改。</p>
+        </div>
+    </div>
+</div>
+{% endblock main %}
+
+{% block footer %}{% endblock %}

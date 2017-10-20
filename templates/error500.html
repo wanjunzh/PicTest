@@ -1,0 +1,20 @@
+{% extends "base_error.html" %}
+
+{% block title %}服务器错误{% endblock title %}
+
+{% block style %}
+<style type="text/css">
+	.icon-font {
+		color:orangered;
+		font-size: 50px;
+	}
+</style>
+{% endblock style %}
+
+{% block main %}
+<main>
+	<span class="glyphicon glyphicon-remove-circle icon-font" aria-hidden="true"></span>
+	<p class="text-center">你提了一个问题，被服务器拒绝了 O(∩_∩)O</p>
+	<div class="text-center"><a href="/" class="btn btn-info">换张图片</a></div>
+</main>
+{% endblock main %}
