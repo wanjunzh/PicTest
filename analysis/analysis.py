@@ -74,13 +74,9 @@ def gexiv(data):
 def judge(data):
     (im, diff) = ela(data)
     tag = (crame, time_crate, time_edit, soft) = gexiv(data)
-    if any(tag):
-        if time_crate is time_edit:
-            return True  # gexiv need change
-        elif soft:
-            return False, soft
-    else:  # gexiv is none
-        if diff < 20:
-            return True
-        else:
-            return False
+    if soft :
+        return False, soft
+    elif diff < 20 :
+        return True
+    else:
+        return False
